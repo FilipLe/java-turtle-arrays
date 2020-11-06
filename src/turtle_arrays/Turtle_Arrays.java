@@ -37,20 +37,23 @@ public class Turtle_Arrays extends SimpleApp {
 		//Moving the turtles
 		for(int i = 0; i < turtles.length; i += 1) 
 		{
-			int direction = -2;
 			//Get turtle from current position
 			Turtle currentTurtle = turtles[i];
-			currentTurtle.setPenDown(false);
-			currentTurtle.move(1);
-			int action = random.nextInt(3);
 			
+			//Lift the pen up so there's no trace of their movement
+			currentTurtle.setPenDown(false);
+			
+			moveTurtle(currentTurtle);
+			
+			//Random num generator to create random direction
+			int action = random.nextInt(3);
 			if(action==0) {
 				//Rotate clockwise
-				currentTurtle.rotate(direction);
+				currentTurtle.rotate(-2);
 			}
 			if(action==1) {
 				//Rotate anti-clockwise
-				currentTurtle.rotate(-direction);
+				currentTurtle.rotate(2);
 			}
 			
 			//Get current position of Turtle
@@ -59,24 +62,27 @@ public class Turtle_Arrays extends SimpleApp {
 			//-->Give it a range
 			if(point.x>200) 
 			{
-				direction = 150;
-				currentTurtle.rotate(direction);
+				currentTurtle.rotate(150);
 			}
 			if(point.x<-200) 
 			{
-				direction = -150;
-				currentTurtle.rotate(direction);
+				currentTurtle.rotate(-150);
 			}
 			if(point.y>200) 
 			{
-				direction = 150;
-				currentTurtle.rotate(direction);
+				currentTurtle.rotate(150);
 			}
 			if(point.y<-200) 
-			{
-				direction = -150;
-				currentTurtle.rotate(direction);
+			{				
+				currentTurtle.rotate(-150);
 			}
 		}	
+	}
+	
+	//Method for moving turtle
+	public void moveTurtle(Turtle t) 
+	//parameter Turtle --> U need to input turtle for this method
+	{
+		t.move(1);
 	}
 }
