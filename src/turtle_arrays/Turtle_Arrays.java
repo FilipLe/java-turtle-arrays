@@ -56,26 +56,7 @@ public class Turtle_Arrays extends SimpleApp {
 				currentTurtle.rotate(2);
 			}
 			
-			//Get current position of Turtle
-			Vec2D point = currentTurtle.getPosition();
-			//Since position is in decimal, we can't get exact num
-			//-->Give it a range
-			if(point.x>200) 
-			{
-				currentTurtle.rotate(150);
-			}
-			if(point.x<-200) 
-			{
-				currentTurtle.rotate(-150);
-			}
-			if(point.y>200) 
-			{
-				currentTurtle.rotate(150);
-			}
-			if(point.y<-200) 
-			{				
-				currentTurtle.rotate(-150);
-			}
+			
 		}	
 	}
 	
@@ -83,6 +64,47 @@ public class Turtle_Arrays extends SimpleApp {
 	public void moveTurtle(Turtle t) 
 	//parameter Turtle --> U need to input turtle for this method
 	{
-		t.move(1);
+		t.move(1); 
+		
+		//Get current position of Turtle
+		Vec2D point = t.getPosition();
+		
+		//When Turtle reaches edges, turn around
+		//Since position is in decimal, we can't get exact num
+		//-->Give it a range
+		if(point.x>200||point.y>200) 
+		{
+			t.rotate(150);
+		}
+		if(point.x<-200||point.y<-200) 
+		{
+			t.rotate(-150);
+		}
+		
+		
+		//go through each turtle in the array
+		for(Turtle otherTurtle : turtles) 
+		/*The same as:
+		for(int i = 0; i < turtles.length; i += 1) 
+		{
+			//Get turtle from current position
+			Turtle otherTurtle = turtles[i];
+		}*/
+		{
+			Vec2D otherPoint = otherTurtle.getPosition();
+			//make sure otherTurtle is different from my turtle
+			//because they would have same position if they the same
+			//-->avoid crashing itself
+			if(otherTurtle != t && point.x == otherPoint.x && point.y == otherPoint.y)
+				/*checks it's not the same turtle
+				 * checks x-coord matches x-coord
+				 * checks y-coord matches y-coord
+				 */
+			{
+				//Change color to black if they crash into each other
+				t.setColour(0);
+				otherTurtle.setColour(0);
+			}
+		}
 	}
 }
