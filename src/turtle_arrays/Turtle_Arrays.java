@@ -77,36 +77,6 @@ public class Turtle_Arrays extends SimpleApp {
 				direction = -150;
 				currentTurtle.rotate(direction);
 			}
-		}
-		/*
-		 *  int dx=1;
-		 *  int dy=1;
-			public void onFrame() {
-				screen.plot(x, y);
-				x += dx;
-				y += dy;
-				
-				//y is inverted
-				//When we reach y=-399, 
-				//move the line upwards
-				if(y == 399) {
-					dy = -1;
-					screen.setColour((int)(Math.random() * 0x1000000));
-				}
-				
-				//If line reaches end of x-axis
-				//start moving backwards to the left 
-				if(x == 399) {
-					dx = -1;
-					screen.setColour((int)(Math.random() * 0x1000000));
-				}
-				//when line reaches top
-				// move it downwards again
-				if(y == 0) {
-					dy = 1;
-					screen.setColour((int)(Math.random() * 0x1000000));
-				}
-			}
-		 */		
+		}	
 	}
 }
