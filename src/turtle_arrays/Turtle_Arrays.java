@@ -97,8 +97,8 @@ public class Turtle_Arrays extends SimpleApp {
 			//-->avoid crashing itself
 			if(otherTurtle != t && point.x == otherPoint.x && point.y == otherPoint.y)
 				/*checks it's not the same turtle
-				 * checks x-coord matches x-coord
-				 * checks y-coord matches y-coord
+				 * checks x-coord matches the other Turtle's x-coord
+				 * checks y-coord matches the other Turtle's y-coord
 				 */
 			{
 				//Change color to black if they crash into each other
