@@ -8,6 +8,9 @@ import tbs.simpleapp.SimpleApp;
 
 public class Turtle_Arrays extends SimpleApp {
 	Turtle[] turtles = new Turtle[20];
+	//Array to store whether the turtle is alive or not
+	//Alive --> True
+	//Dead --> False
 	boolean[] isAlive = new boolean[20];
 	Random random = new Random();
 	
@@ -49,12 +52,9 @@ public class Turtle_Arrays extends SimpleApp {
 		{
 			//Get turtle from current position
 			Turtle currentTurtle = turtles[i];
+	
+			moveTurtle(currentTurtle,isAlive[i]);
 			
-			//Lift the pen up so there's no trace of their movement
-			//currentTurtle.setPenDown(false);
-			if(isAlive[i]==true) {
-				moveTurtle(currentTurtle);
-			}
 			
 			//Random num generator to create random direction
 			int action = random.nextInt(3);
@@ -65,18 +65,17 @@ public class Turtle_Arrays extends SimpleApp {
 			if(action==1) {
 				//Rotate anti-clockwise
 				currentTurtle.rotate(2);
-			}
-			
-			
-		}	
+			}			
+		}
 	}
 	
 	//Method for moving turtle
-	public void moveTurtle(Turtle t) 
+	public void moveTurtle(Turtle t, boolean isAlive) 
 	//parameter Turtle --> U need to input turtle for this method
 	{
-		
-		t.move(1); 
+		//if turtle is still alive, move it
+		if(isAlive)
+			t.move(1); 
 		
 		//Get current position of Turtle
 		Vec2D point = t.getPosition();
@@ -112,14 +111,14 @@ public class Turtle_Arrays extends SimpleApp {
 			//make sure otherTurtle is different from my turtle
 			//because they would have same position if they the same
 			//-->avoid crashing itself
-			if(otherTurtle != t && distance < 20)
+			if(otherTurtle != t && distance < 10)
 				/*checks it's not the same turtle
 				 * if the turtles are less than 10 pixels apart --> to count as collision
 				 * because you cannot get exact coord to overlap, as it can be decimal
 				 */
 			{
-				//Set boolean of that turtle to false if they crash into each other
-				isAlive[i] = false;
+				//Set boolean of that turtle to false if they crash into each other --> not alive
+				this.isAlive[i] = false;
 			}
 		}
 	}
