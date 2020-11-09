@@ -7,7 +7,8 @@ import tbs.gfx.Turtle;
 import tbs.simpleapp.SimpleApp;
 
 public class Turtle_Arrays extends SimpleApp {
-	Turtle[] turtles = new Turtle[50];
+	Turtle[] turtles = new Turtle[20];
+	boolean[] isAlive = new boolean[20];
 	Random random = new Random();
 	
 	public static void main(String[] args) {
@@ -27,8 +28,17 @@ public class Turtle_Arrays extends SimpleApp {
 			newTurtle.setAngle(angle);
 			int color = random.nextInt(0xffffff);
 			newTurtle.setColour(color);
+			 
+			//Set turtle random starting points to avoid collision since start
+			int x_coord = random.nextInt(400) - 200;
+			int y_coord = random.nextInt(400) - 200;
+			newTurtle.setPosition(x_coord,y_coord);
+			
 			//Store newTurtle in slots of the array at position i
 			turtles[i] = newTurtle;
+			
+			//Sets every turtle true --> alive
+			isAlive[i] = true;
 		}
 	}
 
@@ -41,9 +51,10 @@ public class Turtle_Arrays extends SimpleApp {
 			Turtle currentTurtle = turtles[i];
 			
 			//Lift the pen up so there's no trace of their movement
-			currentTurtle.setPenDown(false);
-			
-			moveTurtle(currentTurtle);
+			//currentTurtle.setPenDown(false);
+			if(isAlive[i]==true) {
+				moveTurtle(currentTurtle);
+			}
 			
 			//Random num generator to create random direction
 			int action = random.nextInt(3);
@@ -64,6 +75,7 @@ public class Turtle_Arrays extends SimpleApp {
 	public void moveTurtle(Turtle t) 
 	//parameter Turtle --> U need to input turtle for this method
 	{
+		
 		t.move(1); 
 		
 		//Get current position of Turtle
@@ -83,27 +95,31 @@ public class Turtle_Arrays extends SimpleApp {
 		
 		
 		//go through each turtle in the array
-		for(Turtle otherTurtle : turtles) 
-		/*The same as:
 		for(int i = 0; i < turtles.length; i += 1) 
 		{
 			//Get turtle from current position
 			Turtle otherTurtle = turtles[i];
-		}*/
-		{
+				
+		/*The same as:
+		 * for(Turtle otherTurtle : turtles) 
+		*/
+		
 			Vec2D otherPoint = otherTurtle.getPosition();
+			Vec2D difference = otherPoint.sub(point);
+			double distance = difference.magnitude();
+			
+			
 			//make sure otherTurtle is different from my turtle
 			//because they would have same position if they the same
 			//-->avoid crashing itself
-			if(otherTurtle != t && point.x == otherPoint.x && point.y == otherPoint.y)
+			if(otherTurtle != t && distance < 20)
 				/*checks it's not the same turtle
-				 * checks x-coord matches the other Turtle's x-coord
-				 * checks y-coord matches the other Turtle's y-coord
+				 * if the turtles are less than 10 pixels apart --> to count as collision
+				 * because you cannot get exact coord to overlap, as it can be decimal
 				 */
 			{
-				//Change color to black if they crash into each other
-				t.setColour(0);
-				otherTurtle.setColour(0);
+				//Set boolean of that turtle to false if they crash into each other
+				isAlive[i] = false;
 			}
 		}
 	}
