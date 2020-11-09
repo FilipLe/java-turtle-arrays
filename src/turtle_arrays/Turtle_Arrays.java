@@ -7,6 +7,7 @@ import tbs.gfx.Turtle;
 import tbs.simpleapp.SimpleApp;
 
 public class Turtle_Arrays extends SimpleApp {
+	//Array to store turtles
 	Turtle[] turtles = new Turtle[20];
 	//Array to store whether the turtle is alive or not
 	//Alive --> True
