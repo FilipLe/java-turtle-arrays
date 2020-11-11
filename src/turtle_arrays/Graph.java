@@ -73,6 +73,13 @@ public class Graph extends SimpleApp {
 		//plot the average point
 		drawCross(averagePosts,averageLikes);
 		
+		
+		//Formula for calculating slope of line of best fit
+		//n																	   n
+		//∑((POSTS_PER_DAY[i]-averagePosts)*(LIKES_PER_DAY[i]-averageLikes)) ÷ ∑((POSTS_PER_DAY[i]-averagePosts)^2)
+		//i																	   i
+		
+		//
 	}
 	
 	//Method to plot crosses/points  on a graph
