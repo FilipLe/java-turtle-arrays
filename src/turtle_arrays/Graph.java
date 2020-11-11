@@ -79,7 +79,7 @@ public class Graph extends SimpleApp {
 		//				n																 	   
 		//				∑((POSTS_PER_DAY[i]-averagePosts)*(LIKES_PER_DAY[i]-averageLikes))  
 		//				i																	  
-		//m = --------------------------------------------------------------------------------------
+		//m = -------------------------------------------------------------------------------------------------
 		//						n
 		//						∑((POSTS_PER_DAY[i]-averagePosts)^2)
 		//						i
