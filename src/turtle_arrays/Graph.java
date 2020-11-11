@@ -75,6 +75,7 @@ public class Graph extends SimpleApp {
 		
 		
 		//Formula for calculating slope of line of best fit:
+		//Source: https://www.varsitytutors.com/hotmath/hotmath_help/topics/line-of-best-fit
 		
 		//				n																 	   
 		//				∑((POSTS_PER_DAY[i]-averagePosts)*(LIKES_PER_DAY[i]-averageLikes))  
