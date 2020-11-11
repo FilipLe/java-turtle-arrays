@@ -29,7 +29,17 @@ public class Graph extends SimpleApp {
 		
 		//drawCross(0,0);
 		//Draw a cross at position (0,0) --> centre of screen
-		screen.setColour(0xffffff);//white points
+		
+		//Plotting the data 
+		screen.setColour(0xffffff);//make the crosses white 
+		
+		//Initialize variable to store sum of number of posts
+		int sumPosts = 0;
+				
+		//Initialize variable to store sum of number of likes
+		int sumLikes = 0;
+		
+		//for loop to go through each element in the array
 		for(int index = 0; index < InstagramLikes.NUM_DATA; index += 1) 
 		{
 			//Gets number of posts per day stored in position 'index' in the array InstagramLikes
@@ -37,16 +47,32 @@ public class Graph extends SimpleApp {
 			//we multiply by 10 so that it wouldn't be too close to each other on the graph
 			//-->axis a bit larger
 			
+			//add the num of posts to variable sumPosts
+			sumPosts += posts;
+			
 			//Gets number of likes  per day stored in position 'index' in the array InstagramLikes
 			int likes = InstagramLikes.LIKES_PER_DAY[index];
+			
+			//add the num of likes to variable sumLikes
+			sumLikes += likes;
 			
 			//Posts on x-axis, likes on y-axis 
 			//Draws a cross at position (posts,likes)
 			drawCross(posts,likes);
 		}
 		
-		//Initialize 
-		int sumPosts = 0;
+		//Plotting average
+		//set color red
+		screen.setColour(0xff0000);
+		//Find average amount of posts
+		int averagePosts = Math.round(sumPosts/InstagramLikes.NUM_DATA);
+		
+		//Find average amount of likes
+		int averageLikes = Math.round(sumLikes/InstagramLikes.NUM_DATA);
+		
+		//plot the average
+		drawCross(averagePosts,averageLikes);
+		
 	}
 	
 	//Method to plot crosses/points  on a graph
