@@ -74,12 +74,36 @@ public class Graph extends SimpleApp {
 		drawCross(averagePosts,averageLikes);
 		
 		
-		//Formula for calculating slope of line of best fit
-		//n																	   n
-		//∑((POSTS_PER_DAY[i]-averagePosts)*(LIKES_PER_DAY[i]-averageLikes)) ÷ ∑((POSTS_PER_DAY[i]-averagePosts)^2)
-		//i																	   i
+		//Formula for calculating slope of line of best fit:
 		
-		//
+		//				n																 	   
+		//				∑((POSTS_PER_DAY[i]-averagePosts)*(LIKES_PER_DAY[i]-averageLikes))  
+		//				i																	  
+		//m = --------------------------------------------------------------------------------------
+		//						n
+		//						∑((POSTS_PER_DAY[i]-averagePosts)^2)
+		//						i
+		
+		//Calculating Y-intercept
+		//averageLikes - m*averagePosts
+		
+		//Gradient
+		double numerator = 0;
+		double denominator = 0;
+		for(int i = 0; i < InstagramLikes.NUM_DATA; i++) 
+		{
+			double currentNumerator = (InstagramLikes.POSTS_PER_DAY[i]*10-averagePosts)*(InstagramLikes.LIKES_PER_DAY[i]-averageLikes);
+			numerator += currentNumerator;
+			
+			double currentDenominator = Math.pow((InstagramLikes.POSTS_PER_DAY[i]*10-averagePosts), 2);
+			denominator += currentDenominator;
+		}
+		double gradient = numerator/denominator;
+		System.out.println(gradient);
+		
+		//y-intercept
+		double yIntercept = averageLikes - (gradient*averagePosts);
+		System.out.println(yIntercept);
 	}
 	
 	//Method to plot crosses/points  on a graph
