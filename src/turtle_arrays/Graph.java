@@ -70,7 +70,7 @@ public class Graph extends SimpleApp {
 		//Find average amount of likes
 		int averageLikes = Math.round(sumLikes/InstagramLikes.NUM_DATA);
 		
-		//plot the average
+		//plot the average point
 		drawCross(averagePosts,averageLikes);
 		
 	}
