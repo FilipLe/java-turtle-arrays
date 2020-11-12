@@ -72,7 +72,7 @@ public class Graph extends SimpleApp {
 		
 		//plot the average point
 		drawCross(averagePosts,averageLikes);
-		
+		System.out.println("Average Coordinates: ("+averagePosts+","+averageLikes+")");
 		
 		//Formula for calculating slope of line of best fit:
 		//Source: https://www.varsitytutors.com/hotmath/hotmath_help/topics/line-of-best-fit
@@ -105,6 +105,24 @@ public class Graph extends SimpleApp {
 		//y-intercept
 		double yIntercept = averageLikes - (gradient*averagePosts);
 		System.out.println(yIntercept);
+		
+		//Use expression y = mx + c
+		//Try to calculate 2 points that lie on the line and join them
+		
+		int x1 = -100;
+		double y_1 = gradient * x1 + yIntercept;
+		int y1 = (int)y_1;
+		
+		int x2 = 100;
+		double y_2 = gradient * x2 + yIntercept;
+		int y2 = (int)y_2;
+		
+		System.out.println("("+x1+","+y1+")");
+		System.out.println(y_1);
+		System.out.println("("+x2+","+y2+")");
+		System.out.println(y_2);
+		screen.setColour(0x00ff00);
+		screen.drawLine(x1-55, y1, x2-55, y2);
 	}
 	
 	//Method to plot crosses/points  on a graph
