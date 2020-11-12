@@ -118,9 +118,7 @@ public class Graph extends SimpleApp {
 		int y2 = (int)y_2;
 		
 		System.out.println("("+x1+","+y1+")");
-		System.out.println(y_1);
 		System.out.println("("+x2+","+y2+")");
-		System.out.println(y_2);
 		screen.setColour(0x00ff00);
 		screen.drawLine(x1-55, y1, x2-55, y2);
 	}
